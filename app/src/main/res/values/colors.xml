@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="nudge">#fff584</color>
+    <color name="nudgeBG">#ff0d00</color>
+    <color name="gold">#8c8100</color>
+    <color name="minigameBG">#1a38b8</color>
+
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+
+    <color name="line_1">#fff</color>
+    <color name="line_2">#fff</color>
+    <color name="line_3">#fff</color>
+    <color name="line_4">#fff</color>
+    <color name="line_5">#fff</color>
+    <color name="line_6">#fff</color>
+    <color name="line_7">#fff</color>
+    <color name="line_8">#fff</color>
+    <color name="line_9">#fff</color>
+    <color name="line_10">#fff</color>
+    <color name="line_11">#fff</color>
+    <color name="line_12">#fff</color>
+    <color name="line_13">#fff</color>
+    <color name="line_14">#fff</color>
+    <color name="line_15">#fff</color>
+</resources>
